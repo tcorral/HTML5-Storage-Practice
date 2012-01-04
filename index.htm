@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HTML5: ToDo Application Using Local Storage</title>
+    <link type="text/css" href="skin/default/css/style.css" rel="stylesheet" media="all" />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="js/Hydra.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/TODO.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function()
+        {
+            Core.start("TODO", document.getElementById("form1"));
+        });
+    </script>
+</head>
+<body>
+    <form id="form1">
+        <div id="content" class="todo">
+            <h1>
+                HTML5: ToDo Application Using Local Storage
+            </h1>
+            <div>
+                Add New ToDo Item: <input type="text"/> <input type="submit" value="Add" />
+            </div>
+            <ul id="todoList" style="overflow:hidden; height:auto">
+            </ul>
+            <div>Double Click ToDo Item to Edit or <a id='clearAll' href="#">Clear all!</a></div>
+        </div>
+    </form>
+</body>
+</html>
