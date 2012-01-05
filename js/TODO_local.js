@@ -1,4 +1,5 @@
 Core.register("TODO", function(oAction){
+	var win = window;
 	return {
 		oTodoList: null,
 		oClearAll: null,
@@ -9,10 +10,6 @@ Core.register("TODO", function(oAction){
 				sSkin = 'default';
 			}
 			return "skin/" + sSkin + "/images/";
-		},
-		setStorageAndGetStored: function()
-		{
-			// Make the implementation
 		},
 		addStorageEvent: function(fpCallback)
 		{
@@ -25,9 +22,9 @@ Core.register("TODO", function(oAction){
 				document.attachEvent('on' + sStorage, fpCallback);
 			}
 		},
-		isStorageSupported: function()
+		isLocalStorageSupported: function()
 		{
-			// Make the implementation
+			return win.localStorage !== undefined && win.localStorage !== null;
 		},
 		clearTodoList: function()
 		{
@@ -35,7 +32,9 @@ Core.register("TODO", function(oAction){
 		},
 		clearAll: function()
 		{
-			// Make the implementation
+			localStorage.clear();
+			this.clearTodoList();
+			return false;
 		},
 		setText: function(oElement, sText)
 		{
@@ -47,9 +46,32 @@ Core.register("TODO", function(oAction){
 				oElement.innerText = sText;
 			}
 		},
+		getLocalStorageKeysSorted: function()
+		{
+			var aAux = [], sKey;
+			for (sKey in localStorage)
+			{
+				if (localStorage.hasOwnProperty(sKey)) {
+					aAux.push(sKey);
+				}
+			}
+			return aAux.sort();
+		},
 		getStoredList: function()
 		{
-			// Make the implementation
+			var nItem,
+				sKey,
+				nStoredItems = localStorage.length,
+				aKeys = this.getLocalStorageKeysSorted();
+			if(nStoredItems)
+			{
+				for(nItem = 0; nItem < nStoredItems; nItem++)
+				{
+					//sKey = localStorage.key(nItem);
+					sKey = aKeys[nItem];
+					this.insertNode(sKey, localStorage.getItem(sKey), true);
+				}
+			}
 		},
 		removeElement: function(oElement)
 		{
@@ -68,6 +90,29 @@ Core.register("TODO", function(oAction){
 			oInput.value = sNewValue;
 			this.setText(oSpan, sNewValue);
 		},
+		fpStorageCallback: function(eEvent)
+		{
+			var sKey = eEvent.key,
+				sNewValue = eEvent.newValue,
+				sOldValue = eEvent.oldValue,
+				oElement = document.getElementById(sKey);
+			if(!localStorage.length)
+			{
+				this.clearTodoList();
+			}else if(sKey !== null && sNewValue !== null)
+			{
+				if(sOldValue === null)
+				{
+					this.insertNode(sKey, sNewValue);
+				}else
+				{
+					this.updateItem(oElement, sNewValue);
+				}
+			}else
+			{
+				this.removeElement(oElement);
+			}
+		},
 		startEdit: function(oDivValue, oDivEdit)
 		{
 			oDivValue.style.display = 'none';
@@ -75,15 +120,17 @@ Core.register("TODO", function(oAction){
 		},
 		save: function(sId, oInput, oSpan, oDivValue, oDivEdit)
 		{
-			// Make the implementation
-		},
-		insert: function(sValue)
-		{
-			// Make the implementation
-		},
-		remove: function(sId)
-		{
-			//Make the implementation
+			var sValue = oInput.value;
+			try {
+				localStorage.setItem(sId, sValue);
+				this.setText(oSpan, sValue);
+				oDivValue.style.display = 'block';
+				oDivEdit.style.display = 'none';
+			} catch (e) {
+				if (e == QUOTA_EXCEEDED_ERR) {
+					alert('Quota exceeded!');
+				}
+			}
 		},
 		cancel: function(oInput, sValue, oDivValue, oDivEdit)
 		{
@@ -130,12 +177,10 @@ Core.register("TODO", function(oAction){
 			$(oImgDone).click(function()
 			{
 				$(oItem).animate({
-						opacity: 0.25,
-						left: '+=50',
-						height: 'toggle'
-					},
-					1000,
-					self.remove);
+					opacity: 0.25,
+					left: '+=50',
+					height: 'toggle'
+				}, 1000, function () { $(oItem).remove(); localStorage.removeItem(sId); });
 			});
 			$(oImgSave).click(function(eEvent)
 			{
@@ -188,7 +233,9 @@ Core.register("TODO", function(oAction){
 					return false;
 				}
 				try {
-					self.insert(sValue);
+					var sIdentifier = new Date().getTime();
+					localStorage.setItem(sIdentifier, sValue);
+					self.insertNode(sIdentifier, sValue);
 				} catch (erError) {
 					if (erError == QUOTA_EXCEEDED_ERR) {
 						alert('Quota exceeded!');
@@ -200,14 +247,15 @@ Core.register("TODO", function(oAction){
 		init: function(oForm)
 		{
 			var self = this;
-			if(!this.isStorageSupported())
+			if(!this.isLocalStorageSupported())
 			{
 				alert("Your browser doesn't support LocalStorage! Please use the last version of Google Chrome!");
 				return false;
 			}
 			this.oClearAll = document.getElementById("clearAll");
 			this.oTodoList = document.getElementById('todoList');
-			this.setStorageAndGetStored();
+			this.getStoredList();
+			this.addStorageEvent(this.fpStorageCallback);
 			this.setBehaviourOnSubmit(oForm);
 			this.setBehaviourOnList();
 			$(this.oClearAll).bind("click", function()
