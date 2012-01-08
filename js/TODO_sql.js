@@ -6,7 +6,7 @@ Core.register("TODO", function(oAction) {
         oDB: null,
         getPathImages: function(sSkin) {
             sSkin = sSkin || App.globals.skin;
-            if (sSkin === undefined) {
+            if (sSkin === undefined || sSkin === null) {
                 sSkin = 'light';
             }
             return "skin/" + sSkin + "/images/";

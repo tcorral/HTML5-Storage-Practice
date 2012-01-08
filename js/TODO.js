@@ -6,7 +6,7 @@ Core.register("TODO", function(oAction) {
         // 1ra PARTE: Local Storage de configuración
         getPathImages: function(sSkin) {
             sSkin = sSkin || App.globals.skin;
-            if (sSkin === undefined) {
+            if (sSkin === undefined || sSkin === null) {
                 sSkin = 'light';
             }
             return "skin/" + sSkin + "/images/";
