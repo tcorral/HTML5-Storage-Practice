@@ -1,62 +1,62 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>HTML5: ToDo Application Using Local Storage</title>
-    <link type="text/css" href="skin/light/css/style.css" rel="stylesheet" media="all" />
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<title>HTML5: ToDo Application Using Local Storage</title>
+	<link type="text/css" href="skin/light/css/style.css" rel="stylesheet" media="all" />
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript" src="js/App.js"></script>
-    <script type="text/javascript" src="js/Hydra.js"></script>
+	<script type="text/javascript" src="js/Hydra.js"></script>
 	<!--<script type="text/javascript" src="js/Skin.js"></script>-->
 	<script type="text/javascript" src="js/Skin_local.js"></script>
 	<!--<script type="text/javascript" src="js/Skin_session.js"></script>-->
 	<!--<script type="text/javascript" src="js/TODO.js"></script>-->
 	<!--<script type="text/javascript" src="js/TODO_local.js"></script>-->
-    <script type="text/javascript" src="js/TODO_sql.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function()
-        {
-            Core.start('Skin');
-	        Core.start("TODO", document.getElementById("todo_form"));
-        });
-    </script>
+	<script type="text/javascript" src="js/TODO_sql.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			Core.start('Skin');
+			Core.start("TODO", document.getElementById("todo_form"));
+		});
+	</script>
 </head>
 <body>
-    <form id="todo_form">
-        <div class="todo_cnt">
-            <div class="todo_head">
-                <h1>HTML5: ToDo Application Using Local Storage</h1>
-                <ul class="skin_selector">
-                    <li><a title="Turn on the lights!" id='light' href="#">Turn on the lights!</a></li>
-                    <li><a title="I'm like a bat!" id='dark' href="#">I'm like a bat!</a></li>
-                </ul>
-            </div>
-            <div class="todo_add">
-                <p>Add New Item:</p>
-                <input type="text" class="input_txt" />
-                <input type="submit" value="Add" class="input_send" />
-            </div>
-            <ul id="todo_list">
-            </ul>
-            <div>
-                <p><a id='clearAll' href="#">Clear all!</a></p>
-            </div>
-            <!--<ul id="todo_list">
-                <li id="1234" style="opacity: 1; ">
-                    <div style="display: block; ">
-                        <span>adsfasadadsfad</span>
-                        <img src="skin/light/images/done2.png" class="todo_action" title="Mark as done!">
-                        <img src="skin/light/images/edit.png" class="todo_action edit_action" title="Edit">
-                    </div>
-                </li>
-                <li id="12345" style="opacity: 1; " class="done">
-                    <div style="display: block; ">
-                        <span>adsfasadadsfad</span>
-                        <img src="skin/light/images/done2.png" class="todo_action" title="Mark as done!">
-                        <img src="skin/light/images/edit.png" class="todo_action edit_action" title="Edit">
-                    </div>
-                </li>
-            </ul>-->
-        </div>
-    </form>
+	<form id="todo_form">
+		<div class="todo_cnt">
+			<div class="todo_head">
+				<h1>HTML5: ToDo Application Using Local Storage</h1>
+				<ul class="skin_selector">
+					<li><a title="Turn on the lights!" id='light' href="#">Turn on the lights!</a></li>
+					<li><a title="I'm like a bat!" id='dark' href="#">I'm like a bat!</a></li>
+				</ul>
+			</div>
+			<div class="todo_add">
+				<p>Add New Item:</p>
+				<input type="text" class="input_txt" />
+				<input type="submit" value="Add" class="input_send" />
+			</div>
+			<ul id="todo_list">
+			</ul>
+			<div>
+				<p><a title="Will remove all items!" id='clearAll' href="#">I hate this list!</a></p>
+			</div>
+			<!--<ul id="todo_list">
+				<li id="1234" style="opacity: 1; ">
+					<div style="display: block; ">
+						<span>adsfasadadsfad</span>
+						<img src="skin/light/images/done2.png" class="todo_action" title="Mark as done!">
+						<img src="skin/light/images/edit.png" class="todo_action edit_action" title="Edit">
+					</div>
+				</li>
+				<li id="12345" style="opacity: 1; " class="done">
+					<div style="display: block; ">
+						<span>adsfasadadsfad</span>
+						<img src="skin/light/images/done2.png" class="todo_action" title="Mark as done!">
+						<img src="skin/light/images/edit.png" class="todo_action edit_action" title="Edit">
+					</div>
+				</li>
+			</ul>-->
+		</div>
+	</form>
 </body>
 </html>
