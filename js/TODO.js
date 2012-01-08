@@ -2,11 +2,12 @@ Core.register("TODO", function(oAction){
 	return {
 		oTodoList: null,
 		oClearAll: null,
+		// 1ra PARTE: Local Storage de configuración
 		getPathImages: function(sSkin)
 		{
 			if(sSkin === undefined)
 			{
-				sSkin = 'default';
+				sSkin = 'light';
 			}
 			return "skin/" + sSkin + "/images/";
 		},
@@ -105,7 +106,7 @@ Core.register("TODO", function(oAction){
 				oImgCancel = oImg.cloneNode(true),
 				oInput = document.createElement("input"),
 				sPathImages = this.getPathImages(),
-				sClassesIcons = 'todo_action square25px';
+				sClassesIcons = 'todo_action';
 
 			this.setText(oSpan, sValue);
 			oImgDone.src = sPathImages + 'done.png';
@@ -165,7 +166,7 @@ Core.register("TODO", function(oAction){
 			}
 			$(this.oTodoList)[sAppendType]($(oNode).animate({
 				opacity: 1.0
-			}, 600, function(){}).slideDown(800));
+			}, 50, function(){}).slideDown(800));
 		},
 		setBehaviourOnList: function()
 		{
@@ -206,7 +207,7 @@ Core.register("TODO", function(oAction){
 				return false;
 			}
 			this.oClearAll = document.getElementById("clearAll");
-			this.oTodoList = document.getElementById('todoList');
+			this.oTodoList = document.getElementById('todo_list');
 			this.setStorageAndGetStored();
 			this.setBehaviourOnSubmit(oForm);
 			this.setBehaviourOnList();

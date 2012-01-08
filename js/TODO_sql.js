@@ -258,7 +258,7 @@ Core.register("TODO", function(oAction){
 			}
 			$(this.oTodoList)[sAppendType]($(oNode).animate({
 				opacity: 1.0
-			}, 600, function(){}).slideDown(800));
+			}, 50, function(){}).slideDown(800));
 		},
 		setBehaviourOnList: function()
 		{

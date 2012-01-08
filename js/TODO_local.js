@@ -7,7 +7,7 @@ Core.register("TODO", function(oAction){
 		{
 			if(sSkin === undefined)
 			{
-				sSkin = 'default';
+				sSkin = 'light';
 			}
 			return "skin/" + sSkin + "/images/";
 		},
@@ -152,20 +152,20 @@ Core.register("TODO", function(oAction){
 				oImgCancel = oImg.cloneNode(true),
 				oInput = document.createElement("input"),
 				sPathImages = this.getPathImages(),
-				sClassesIcons = 'todo_action square25px';
+				sClassesIcons = 'todo_action';
 
 			this.setText(oSpan, sValue);
-			oImgDone.src = sPathImages + 'done.png';
+			oImgDone.src = sPathImages + 'done2.png';
 			oImgDone.className = sClassesIcons;
 			oImgDone.title = "Done!";
 			oDivValue.appendChild(oSpan);
 			oDivValue.appendChild(oImgDone);
 
 			oInput.value = sValue;
-			oImgSave.src = sPathImages + 'save.png';
+			oImgSave.src = sPathImages + 'save2.png';
 			oImgSave.className = sClassesIcons;
 			oImgSave.title = 'Save';
-			oImgCancel.src = sPathImages + 'cancel.png';
+			oImgCancel.src = sPathImages + 'cancel2.png';
 			oImgCancel.className = sClassesIcons;
 			oImgCancel.title = 'Cancel';
 			oDivEdit.style.display = "none";
@@ -210,7 +210,7 @@ Core.register("TODO", function(oAction){
 			}
 			$(this.oTodoList)[sAppendType]($(oNode).animate({
 				opacity: 1.0
-			}, 600, function(){}).slideDown(800));
+			}, 50, function(){}).slideDown(800));
 		},
 		setBehaviourOnList: function()
 		{
@@ -253,7 +253,7 @@ Core.register("TODO", function(oAction){
 				return false;
 			}
 			this.oClearAll = document.getElementById("clearAll");
-			this.oTodoList = document.getElementById('todoList');
+			this.oTodoList = document.getElementById('todo_list');
 			this.getStoredList();
 			this.addStorageEvent(this.fpStorageCallback);
 			this.setBehaviourOnSubmit(oForm);
