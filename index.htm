@@ -4,12 +4,19 @@
     <title>HTML5: ToDo Application Using Local Storage</title>
     <link type="text/css" href="skin/light/css/style.css" rel="stylesheet" media="all" />
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="js/App.js"></script>
     <script type="text/javascript" src="js/Hydra.js"></script>
-    <script type="text/javascript" src="js/TODO_local.js"></script>
+	<!--<script type="text/javascript" src="js/Skin.js"></script>-->
+	<script type="text/javascript" src="js/Skin_local.js"></script>
+	<!--<script type="text/javascript" src="js/Skin_session.js"></script>-->
+	<!--<script type="text/javascript" src="js/TODO.js"></script>-->
+	<!--<script type="text/javascript" src="js/TODO_local.js"></script>-->
+    <script type="text/javascript" src="js/TODO_sql.js"></script>
     <script type="text/javascript">
         $(document).ready(function()
         {
-            Core.start("TODO", document.getElementById("todo_form"));
+            Core.start('Skin');
+	        Core.start("TODO", document.getElementById("todo_form"));
         });
     </script>
 </head>
@@ -19,8 +26,8 @@
             <div class="todo_head">
                 <h1>HTML5: ToDo Application Using Local Storage</h1>
                 <ul class="skin_selector">
-                    <li><a title="Turn on the lights!" href="#">Turn on the lights!</a></li>
-                    <li><a title="I'm like a bat!" href="#">I'm like a bat!</a></li>
+                    <li><a title="Turn on the lights!" id='light' href="#">Turn on the lights!</a></li>
+                    <li><a title="I'm like a bat!" id='dark' href="#">I'm like a bat!</a></li>
                 </ul>
             </div>
             <div class="todo_add">
@@ -31,9 +38,9 @@
             <ul id="todo_list">
             </ul>
             <div>
-                <p>Double Click to Edit or <a id='clearAll' href="#">Clear all!</a></p>
+                <p><a id='clearAll' href="#">Clear all!</a></p>
             </div>
-            <ul id="todo_list">
+            <!--<ul id="todo_list">
                 <li id="1234" style="opacity: 1; ">
                     <div style="display: block; ">
                         <span>adsfasadadsfad</span>
@@ -48,7 +55,7 @@
                         <img src="skin/light/images/edit.png" class="todo_action edit_action" title="Edit">
                     </div>
                 </li>
-            </ul>
+            </ul>-->
         </div>
     </form>
 </body>
