@@ -4,11 +4,7 @@ Core.register("TODO", function(oAction) {
         oTodoList: null,
         oClearAll: null,
         getPathImages: function(sSkin) {
-            sSkin = sSkin || App.globals.skin;
-            if (sSkin === undefined || sSkin === null) {
-                sSkin = 'light';
-            }
-            return "skin/" + sSkin + "/images/";
+            return "skin/" + (sSkin || App.globals.skin) + "/images/";
         },
         addStorageEvent: function(fpCallback) {
             var sStorage = 'storage';
@@ -64,6 +60,17 @@ Core.register("TODO", function(oAction) {
         removeElement: function(oElement) {
             oElement.parentNode.removeChild(oElement);
         },
+	    addItem: function(sId, sValue)
+	    {
+			var oItem = document.getElementById(sId);
+		    if(oItem)
+		    {
+			    this.updateItem(oItem, sValue);
+		    }else
+		    {
+				this.insertNode(sId, sValue);
+		    }
+	    },
         updateItem: function(oElement, sNewValue) {
             var aLayers = oElement.getElementsByTagName("div"),
                 oSpan, oInput;

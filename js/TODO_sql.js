@@ -5,11 +5,7 @@ Core.register("TODO", function(oAction) {
         oClearAll: null,
         oDB: null,
         getPathImages: function(sSkin) {
-            sSkin = sSkin || App.globals.skin;
-            if (sSkin === undefined || sSkin === null) {
-                sSkin = 'light';
-            }
-            return "skin/" + sSkin + "/images/";
+            return "skin/" + (sSkin || App.globals.skin) + "/images/";
         },
         isWebSQLSupported: function() {
             return win.openDatabase !== undefined && win.openDatabase !== null;
@@ -20,7 +16,7 @@ Core.register("TODO", function(oAction) {
         clearAll: function() {
             var self = this;
             this.oDB.transaction(function(oTx) {
-                oTx.executeSql('DROP TABLE IF EXISTS todo');
+                oTx.executeSql('DELETE FROM todo');
             }, function error() {
                 console.log.call(console, arguments);
             }, function success() {
@@ -74,6 +70,17 @@ Core.register("TODO", function(oAction) {
         removeElement: function(oElement) {
             oElement.parentNode.removeChild(oElement);
         },
+	    addItem: function(sId, sValue)
+	    {
+			var oItem = document.getElementById(sId);
+		    if(oItem)
+		    {
+			    this.updateItem(oItem, sValue);
+		    }else
+		    {
+				this.insertNode(sId, sValue);
+		    }
+	    },
         updateItem: function(oElement, sNewValue) {
             var aLayers = oElement.getElementsByTagName("div"),
                 oSpan, oInput;
@@ -101,8 +108,7 @@ Core.register("TODO", function(oAction) {
                         }
                         self.oDB.transaction(function(oTx) {
                             oTx.executeSql(sSQL, [sValue, sId], function render(oTrans, aResults) {
-                                self.removeElement(document.getElementById(sId));
-                                self.insertNode(sId, sValue);
+								self.addItem(sId, sValue);
                             }, function error() {
                             });
                         }, function error() {
@@ -243,6 +249,7 @@ Core.register("TODO", function(oAction) {
                             var sKey = aResults.insertId;
                             self.insertNode(sKey, sValue);
                         }, function error() {
+	                        alert("erError");
                         });
                     }, function error() {
                         alert("Error on saving!");
