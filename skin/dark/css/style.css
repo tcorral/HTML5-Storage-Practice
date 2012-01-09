@@ -55,20 +55,28 @@ a {
 /* @endgroup RESET */
 
 /* @group TO DO APP */
+body { background-color:#000; }
 
-.todo_cnt { width:100%; padding-bottom:20px; margin:0 auto; border-bottom:2px solid #ccc; text-align:center; box-shadow:0 0 35px #eee; font:14px Helvetica, Arial, sans-serif; text-shadow:0 1px 0 #fff; color:#6e7876; }
+.todo_cnt { width:100%; padding-bottom:20px; margin:0 auto; border-bottom:2px solid #ccc; text-align:center; box-shadow:0 0 35px #eee; font:14px Helvetica, Arial, sans-serif; text-shadow:0 1px 0 #000; color:#fff; }
 
-.todo_head { width:100%; border-bottom:3px solid #ccc; 
-	background-image:linear-gradient(bottom, rgb(255,255,255) 0%, rgb(238,238,238) 63%);
-	background-image:-o-linear-gradient(bottom, rgb(255,255,255) 0%, rgb(238,238,238) 63%);
-	background-image:-moz-linear-gradient(bottom, rgb(255,255,255) 0%, rgb(238,238,238) 63%);
-	background-image:-webkit-linear-gradient(bottom, rgb(255,255,255) 0%, rgb(238,238,238) 63%);
-	background-image:-ms-linear-gradient(bottom, rgb(255,255,255) 0%, rgb(238,238,238) 63%);
-	background-image:-webkit-gradient(linear, left bottom, left top, color-stop(0, rgb(255,255,255)), color-stop(0.63, rgb(238,238,238)));
+.todo_head { width:100%; border-bottom:5px solid #4d4d4d; 
+background-image: linear-gradient(bottom, rgb(133,133,133) 0%, rgb(89,89,89) 34%);
+background-image: -o-linear-gradient(bottom, rgb(133,133,133) 0%, rgb(89,89,89) 34%);
+background-image: -moz-linear-gradient(bottom, rgb(133,133,133) 0%, rgb(89,89,89) 34%);
+background-image: -webkit-linear-gradient(bottom, rgb(133,133,133) 0%, rgb(89,89,89) 34%);
+background-image: -ms-linear-gradient(bottom, rgb(133,133,133) 0%, rgb(89,89,89) 34%);
+
+background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0, rgb(133,133,133)),
+	color-stop(0.34, rgb(89,89,89))
+);
 }
-	.todo_head h1 { padding:0; margin-bottom:-5px; font:26px Century Gothic,Arial,sans-serif; text-shadow: 2px 0px 0 #eee; color:#858585;  }
+	.todo_head h1 { padding:0; margin-bottom:-14px; font:46px Century Gothic,Arial,sans-serif; text-align:left; text-shadow: 2px 0px 0 #4d4d4d; color:#eee;  }
 
-	.todo_head .skin_selector { position:absolute; top:0; right:15px; }
+	.todo_head .skin_selector { position:absolute; top:0; right:10px; }
 		.todo_head .skin_selector li { float:left; margin:0 4px; }
 		.todo_head .skin_selector li a { display:block; border:1px solid #ccc; border-top:0; border-radius:0 0 4px 4px; padding:10px; text-decoration:none; background-color:#eee; box-shadow:0px 1px 4px 1px #ccc; font-weight:bold; color:#858585; }
 		.todo_head .skin_selector li a:hover { background-color:#fff; }
